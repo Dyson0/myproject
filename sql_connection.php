@@ -1,0 +1,13 @@
+<?php
+$mysqli_connection = new mysqli("localhost","root","");
+
+$mysqli_connection->query("CREATE DATABASE IF NOT EXISTS College");
+
+mysqli_select_db($mysqli_connection,'College');
+
+$mysqli_connection->query("CREATE TABLE IF NOT EXISTS courses(ID INT(11) NOT NULL AUTO_INCREMENT,PRIMARY KEY(ID), NAME VARCHAR(30) NOT NULL)");
+
+$mysqli_connection->query("CREATE TABLE IF NOT EXISTS students(ID INT(11) NOT NULL AUTO_INCREMENT,PRIMARY KEY(ID),NAME VARCHAR(30) NOT NULL,EMAIL VARCHAR(50) NOT NULL UNIQUE,PHONE_NUMBER VARCHAR(20) NOT NULL UNIQUE,PASSWORD VARCHAR(50) NOT NULL,COURSE_ID INT(11) NOT NULL,FOREIGN KEY(COURSE_ID)REFERENCES courses(ID))");
+
+$mysqli_connection->query("CREATE TABLE IF NOT EXISTS course_units(ID INT(11) NOT NULL AUTO_INCREMENT,PRIMARY KEY(ID), NAME VARCHAR(30) NOT NULL)");
+
